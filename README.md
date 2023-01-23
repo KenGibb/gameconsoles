@@ -1,5 +1,8 @@
 # Games Are Us Back-End Project
 
+## Description
+As a vistor on this site, you will be able to get some of the latest and greatest video game consoles of the century, all inside of a secure account! Don't worry about having to look everywhere for the latest models because we have a large stock of some the most popular products!
+
 ## User Stories
 - As a user, I want vistors to be able to make an account
 - As a user, I want vistors to be able to to log back into an account that they made
