@@ -1,26 +1,35 @@
-const mongoose = require('../utils/')
+const mongoose = require('../utils/connection.js')
 
-const { Schema } = mongoose
+const { Schema, model } = mongoose
 
-// comment schema
+// review schema
 const reviewSchema = new Schema({
-    note: {
+    title: {
         type: String,
         required: true
     },
+    content: {
+        type: String
+    },
+    console: {
+		type: Schema.Types.ObjectId,
+		ref: 'Console',
+        required: true
+	},
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Console',
         required: true
-    }
+    },
 }, {
     timestamps: true
 })
 
-
+const Review = model('Review', reviewSchema)
 
 ////////////////////////////////////
 //// Export our Schema          ////
 ////////////////////////////////////
 
-module.exports = reviewSchema
+ module.exports = reviewSchema
+// module.exports = Review
