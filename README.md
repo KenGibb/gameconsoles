@@ -30,8 +30,8 @@
 
 | **URL**          | **HTTP Verb**|**Action**|
 |--------------------|--------------|----------|
-| /comments/:fruitId | POST         | create  
-| /comments/delete/:fruitId/:commentId      | DELETE          | destroy       
+| /comments/:gameId | POST         | create  
+| /comments/delete/:gameId/:commentId      | DELETE          | destroy       
 
 
 #### Users
