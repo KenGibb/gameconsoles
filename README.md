@@ -47,3 +47,14 @@ As a vistor on this site, you will be able to get some of the latest and greates
 | /users/login     | GET         | login       
 | /users/login     | POST         | create       
 | /users/logout    | DELETE       | destroy 
+
+## Technologies Used
+
+- Express
+- MongoDB
+- Mongoose
+- Node.js
+- Liquid(Bootstrap)
+- CSS
+- HTML
+- Javascript
