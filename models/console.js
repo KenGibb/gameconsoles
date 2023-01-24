@@ -7,14 +7,14 @@ const reviewSchema = require('./review')
 const { Schema, model } = mongoose
 
 const consoleSchema = new Schema ({
+	manufacturer: {
+		type: String,
+	},
 	name: {
 		type: String,
 	},
-	price: {
-		type: Number,
-	},
-	manyExclusives: {
-		type: Boolean
+	releaseYear: {
+		type: Number
 	}, 
 	owner: {
 		type: Schema.Types.ObjectId,
