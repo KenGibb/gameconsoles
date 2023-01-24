@@ -1,30 +1,27 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-sm">
-    <form action="/examples?_method=PUT" method="POST">
+    <form action="/consoles" method="POST">
         <fieldset>
-            <legend>Create New Example</legend>
+            <legend>Create New Console</legend>
             <label class="form-label">Title: </label>
             <input 
                 type="text" 
                 name="title" 
-                placeholder="{{ example.title }}"
-                value="{{ example.title }}"
+                placeholder="enter console title"
                 class="form-control"
             >
             <label class="form-label">Body:</label>
             <input 
                 type="text" 
                 name="body" 
-                placeholder="{{ example.body }}" 
-                value="{{ example.body }}" 
+                placeholder="enter console body" 
                 class="form-control"
             >
             <label class="form-label">Amount:</label>
             <input 
                 type="number" 
-                name="amount"
-                value="{{ example.amount }}"
+                name="amount" 
                 class="form-control"
             >
             <label class="form-label">Ready:</label>
@@ -32,12 +29,9 @@
                 type="checkbox" 
                 name="ready" 
                 class="form-check-input"
-                {% if example.ready %}
-                    checked
-                {% endif %}
             >
         </fieldset>
-        <input type="submit" value="Edit Example" class="btn btn-success">
+        <input type="submit" value="Create New Console" class="btn btn-success">
     </form>
 </div>
 {% endblock %}
