@@ -18,14 +18,14 @@ const reviewSchema = new Schema({
 	},
     author: {
         type: Schema.Types.ObjectId,
-        ref: 'Console',
+        ref: 'User',
         required: true
     },
 }, {
     timestamps: true
 })
 
-const Review = model('Review', reviewSchema)
+//const Review = model('Review', reviewSchema)
 
 ////////////////////////////////////
 //// Export our Schema          ////

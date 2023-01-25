@@ -16,6 +16,9 @@ const consoleSchema = new Schema ({
 	releaseYear: {
 		type: Number
 	}, 
+	ratings: {
+		type: String
+	},
 	owner: {
 		type: Schema.Types.ObjectId,
 		ref: 'User'

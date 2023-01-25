@@ -2,16 +2,9 @@
 {% block content %}
 <div class="container-md">
     <article>
-        <h2>
-            {{ console.title }} -
-            {% if console.ready %}
-            Ready
-            {% else %}
-            Not Ready
-            {%endif%}
-        </h2>
-        <h3>Release Year: {{ console.amount }}</h3>
-        <h6>Manufacturer: {{ console.body }}</h6>
+        <h2> {{ console.name }}</h2>
+        <h4>Manufacturer: {{ console.manufacturer }}</h4>
+        <h6>Release Year: {{ console.releaseYear }}</h6>
         {% if console.owner == userId %}
         <div class="btn-group">
 
@@ -20,6 +13,22 @@
                 <input type="submit" value="Delete" class="btn btn-danger">
             </form>
         </div>
+        {% endif %}
+        {% if loggedIn %}
+            <div class="col-md-6">
+                <form action="/reviews/{{ console.id }}" method="POST">
+                    <fieldset>
+                        <legend>Leave a review under {{ console.name }}</legend>
+                        <label class="form-label">comment: </label>
+                        <input type="text" name="note" class="form-control mb-1">
+                    </fieldset>
+                    <input type="submit" class="btn btn-success" value="Submit">
+                </form>
+            </div>
+        {% else %}
+            <div class="col-md-6">
+                <small>If you'd like to leave a comment, please log in...</small>
+            </div>
         {% endif %}
     </article>
 </div>
