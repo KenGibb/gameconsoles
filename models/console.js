@@ -23,7 +23,11 @@ const consoleSchema = new Schema ({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	reviews: [reviewSchema]
+	reviews: [{
+		type: Schema.Types.ObjectId,
+		ref: 'Review'
+	}]
+	
 }, { timeStamps: true })
 
 const Console = model('Console', consoleSchema)

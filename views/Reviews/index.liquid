@@ -1,0 +1,27 @@
+{% layout 'layout.liquid'%}
+{% block content %}
+<div>
+    <h2 class="display-6">All Reviews</h2>
+    <div class="row">
+        {% for console in consoles %}
+        <div class="card" style="width: 18rem;">
+            <h5 class="card-header">{{ review.name }}</h5>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Developer: {{ review.manufacturer }}
+                </h5>
+                <p class="card-text">
+                    Released: {{ review.releaseYear }}
+                </p>
+                <p class="card-text">
+                    Ratings: {{ review.ratings }}
+                </p>
+                <a href="/consoles/{{ review.id }}" class="btn btn-info">
+                    View {{ review.title }}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

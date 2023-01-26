@@ -1,0 +1,31 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="container-sm">
+    <form action="/reviews" method="POST">
+        <fieldset>
+            <legend>Make a review</legend>
+            <label class="form-label">Title: </label>
+            <input 
+                type="text" 
+                name="title" 
+                placeholder="enter title"
+                class="form-control"
+            >
+            <label class="form-label">Content:</label>
+            <input 
+                type="text" 
+                name="body" 
+                placeholder="enter body" 
+                class="form-control"
+            >
+            <label class="form-label">Your Name:</label>
+            <input 
+                type="type" 
+                name="name" 
+                class="form-control"
+            >
+        </fieldset>
+        <input type="submit" value="Make New Review" class="btn btn-success">
+    </form>
+</div>
+{% endblock %}

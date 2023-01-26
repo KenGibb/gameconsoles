@@ -25,11 +25,11 @@ const reviewSchema = new Schema({
     timestamps: true
 })
 
-//const Review = model('Review', reviewSchema)
+const Review = model('Review', reviewSchema)
 
 ////////////////////////////////////
 //// Export our Schema          ////
 ////////////////////////////////////
 
- module.exports = reviewSchema
-// module.exports = Review
+// module.exports = reviewSchema
+module.exports = Review

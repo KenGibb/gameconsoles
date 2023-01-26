@@ -1,0 +1,34 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+<div class="container-sm">
+    <form action="/reviews?_method=PUT" method="POST">
+        <fieldset>
+            <legend>Create New Review</legend>
+            <label class="form-label">Title: </label>
+            <input 
+                type="text" 
+                name="title" 
+                placeholder="{{ review.title }}"
+                value="{{ review.title }}"
+                class="form-control"
+            >
+            <label class="form-label">Body:</label>
+            <input 
+                type="text" 
+                name="body" 
+                placeholder="{{ review.content }}" 
+                value="{{ review.body }}" 
+                class="form-control"
+            >
+            <label class="form-label">Console:</label>
+            <input 
+                type="number" 
+                name="amount"
+                value="{{ review.console }}"
+                class="form-control"
+            >
+        </fieldset>
+        <input type="submit" value="Edit Review" class="btn btn-success">
+    </form>
+</div>
+{% endblock %}
