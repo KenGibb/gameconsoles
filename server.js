@@ -33,6 +33,11 @@ app.get('/', (req, res) => {
 	res.render('index.liquid', { loggedIn, username, userId })
 })
 
+app.get('/review', (req, res) => {
+	const { username, userId, loggedIn } = req.session
+	res.render('index.liquid', req.session)
+})
+
 app.get('/error', (req, res) => {
 	const error = req.query.error || 'This Page Does Not Exist'
     const { username, loggedIn, userId } = req.session
