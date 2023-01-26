@@ -41,7 +41,7 @@ router.get('/review', (req, res) => {
 // GET for the new page
 // shows a form where a user can create a new review
 router.get('/review/new', (req, res) => {
-    res.render('reviews/new', { ...req.session })
+    res.render('reviews/new', { })
 })
 
 // CREATE route

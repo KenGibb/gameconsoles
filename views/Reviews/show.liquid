@@ -1,0 +1,12 @@
+{%  layout 'layout.liquid'%}
+{% block content %}
+    {% if fruit.comments.length > 0 %}
+        <div class="container-sm justify-content-center">
+            {% for comm in fruit.comments %}
+                {% render '../comment.liquid', comm: comm, userId: userId, review: review %}
+            {% endfor %}
+        </div>
+    {% else %}
+    <small>no comments yet...</small>
+    {% endif %}
+{% endblock %}
