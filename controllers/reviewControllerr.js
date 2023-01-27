@@ -52,15 +52,17 @@ const router = express.Router()
 router.post('/:consoleId', (req, res) => {
     const consoleId = req.params.consoleId
     if (req.session.loggedIn) {
-        req.body.owner = req.session.userId
-        const theReview = req.body
+        req.body.arthor = req.session.userId
+        const theReview = req.content
         Console.findById(consoleId)
-            .then(console => {
-                console.reviews.push(theReview)
-                return console.save()
+            .then(gameConsole => {
+                console.log(req.body.author)
+                gameConsole.reviews.push(theReview)
+
+                return gameConsole.save()
             })
             .then(console => {
-                res.direct(`/consoles/${console.id}`)
+                res.redirect(`/consoles/${console.id}`)
             })
             .catch(err => {
                 console.log(err)
