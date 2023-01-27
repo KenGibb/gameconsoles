@@ -52,8 +52,8 @@ const router = express.Router()
 router.post('/:consoleId', (req, res) => {
     const consoleId = req.params.consoleId
     if (req.session.loggedIn) {
-        req.body.arthor = req.session.userId
-        const theReview = req.content
+        req.body.author = req.session.userId
+        const theReview = req.body
         Console.findById(consoleId)
             .then(gameConsole => {
                 console.log(req.body.author)

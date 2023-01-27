@@ -121,6 +121,7 @@ router.put('/:id', (req, res) => {
 router.get('/:id', (req, res) => {
 	const consoleId = req.params.id
 	Console.findById(consoleId)
+        .populate('reviews.author', 'username')
 		.then(console => {
             const {username, loggedIn, userId} = req.session
 			res.render('consoles/show', { console, username, loggedIn, userId })
