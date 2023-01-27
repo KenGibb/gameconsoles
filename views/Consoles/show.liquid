@@ -1,35 +1,77 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<div class="container-md">
+  <div class="container-md">
     <article>
-        <h2> {{ console.name }}</h2>
-        <h4>Manufacturer: {{ console.manufacturer }}</h4>
-        <h6>Release Year: {{ console.releaseYear }}</h6>
-        {% if console.owner == userId %}
+      <h2>
+        {{ console.name }}</h2>
+      <h4>Manufacturer: {{ console.manufacturer }}</h4>
+      <h6>Release Year: {{ console.releaseYear }}</h6>
+      {% if console.owner == userId %}
         <div class="btn-group">
 
-            <a href="/consoles/{{ console.id }}/edit" class="btn btn-primary">Edit</a>
-            <form action="/consoles/{{ console.id }}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" class="btn btn-danger">
-            </form>
+          <a href="/consoles/{{ console.id }}/edit" class="btn btn-primary">Edit</a>
+          <form action="/consoles/{{ console.id }}?_method=DELETE" method="POST">
+            <input
+              type="submit"
+              value="Delete"
+              class="btn btn-danger">
+          </form>
         </div>
-        {% endif %}
+      {% endif %}
+    </article>
+  </div>
+  
+  {% if review.owner == userId %}
+                <hr>
+                <div class="btn-group">
+                    {%- comment -%}
+                    first button will take us to the edit page
+                    second will actually be a form, that calls our delete route
+                    {%- endcomment -%}
+                    <a href="/consoles/edit/{{ console.id }}" class="btn btn-primary">Edit {{ console.name }}</a>
+                    <form action="/reviews/{{ console.id }}" method="POST">
+                        <input type="submit" class="btn btn-danger" value="Delete {{ console.name }}">
+                    </form>
+                </div>
+            {% endif %}
+        </article>
+        <hr>
+        <h4>Reviews</h4>
+        <hr>
         {% if loggedIn %}
             <div class="col-md-6">
-                <form action="/reviews/new" method="POST">
+                <form action="/reviews/{{ console.id }}" method="POST">
                     <fieldset>
                         <legend>Leave a review under {{ console.name }}.</legend>
-                        <label class="form-label">comment: </label>
-                        <input type="text" name="note" class="form-control mb-1">
+              <label class="form-label">title:
+              </label>
+              <input
+                type="text"
+                name="title"
+                class="form-control mb-1">
+                <label class="form-label">Content:
+              </label>
+              <input
+                type="text"
+                name="content"
+                class="form-control mb-1">
                     </fieldset>
-                    <input type="submit" class="btn btn-success" value="Submit">
+                    <input type="submit" class="btn btn-success" value="add review">
                 </form>
             </div>
         {% else %}
             <div class="col-md-6">
-                <small>If you'd like to leave a comment, please log in...</small>
+                <small>If you'd like to leave a review, please log in...</small>
             </div>
         {% endif %}
-    </article>
-</div>
+        <hr>
+        {% if console.reviews.length > 0 %}
+            <div class="container-sm justify-content-center">
+                {% for rev in console.reviews %}
+                    {% render '../review.liquid', rev: rev, userId: userId, console: console %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <small>no reviews yet...</small>
+        {% endif %}
 {% endblock %}

@@ -1,7 +1,6 @@
 // Import Dependencies
 const express = require('express')
 const Console = require('../models/console')
-
 // Create router
 const router = express.Router()
 
@@ -82,7 +81,7 @@ router.post('/', (req, res) => {
 
 	req.body.owner = req.session.userId
 	Console.create(req.body)
-		.then(consoles => {
+		.then(console => {
 			console.log('this was returned from create', console)
 			res.redirect('/consoles')
 		})
@@ -106,7 +105,7 @@ router.get('/:id/edit', (req, res) => {
 
 // update route
 router.put('/:id', (req, res) => {
-	const coId = req.params.id
+	const consoleId = req.params.id
 	req.body.ready = req.body.ready === 'on' ? true : false
 
 	Console.findByIdAndUpdate(consoleId, req.body, { new: true })

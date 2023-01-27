@@ -1,0 +1,15 @@
+{% block content %}
+    <dic class="card mb-4 shadow">
+        <div class="card-body">
+            <p>{{ rev.content }}</p>
+            <div class="d-flex justify-content-between">
+                <small>author: {{ rev.author }}</small>
+                {% if rev.author == userId %}
+                    <form action="/comments/delete/{{ console.id }}/{{ rev.id }}?_method=DELETE" method="POST">
+                        <input class="btn btn-danger" type="submit" value="X">
+                    </form>
+                {% endif %}
+            </div>
+        </div>
+    </dic>
+{% endblock %}
