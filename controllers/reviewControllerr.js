@@ -20,13 +20,9 @@ router.get('/review', (req, res) => {
     const { username, loggedIn, userId } = req.session
     // find all the reviews
     Review.find({})
-        // there's a built in function that runs before the rest of the promise chain
-        // this function is called populate, and it's able to retrieve info from other documents in other collections
         .populate('owner', 'username')
         .populate('comments.author', '-password')
-        // send json if successful
         .then(reviews => { 
-            // res.json({ reviews: reviews })
             // now that we have liquid installed, we're going to use render as a response for our controllers
             res.render('reviews/index', { reviews, username, loggedIn, userId })
         })
@@ -47,17 +43,8 @@ router.get('/new', (req, res) => {
 // CREATE route
 // Create -> receives a request body, and creates a new document in the database
 router.post('/review', (req, res) => {
-    // console.log('this is req.body before owner: \n', req.body)
-    // here, we'll have something called a request body
-    // inside this function, that will be called req.body
-    // we want to pass our req.body to the create method
-    // we want to add an owner field to our review
-    // luckily for us, we saved the user's id on the session object, so it's really easy for us to access that data
     req.body.owner = req.session.userId
-
-    // we need to do a little js magic, to get our checkbox turned into a boolean
     // here we use a ternary operator to change the on value to send as true
-    // otherwise, make that field false
     req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
     const newReview = req.body
     console.log('this is req.body aka newReview, after owner\n', newReview)
@@ -74,7 +61,6 @@ router.post('/review', (req, res) => {
         // send an error if one occurs
         .catch(err => {
             console.log(err)
-            // res.status(404).json(err)
             res.redirect(`/error?error=${err}`)
         })
 })

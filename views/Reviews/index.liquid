@@ -5,16 +5,16 @@
     <div class="row">
         {% for console in consoles %}
         <div class="card" style="width: 18rem;">
-            <h5 class="card-header">{{ review.name }}</h5>
+            <h5 class="card-header">{{ review.title }}</h5>
             <div class="card-body">
                 <h5 class="card-title">
-                    Developer: {{ review.manufacturer }}
+                    Developer: {{ review.content }}
                 </h5>
                 <p class="card-text">
-                    Released: {{ review.releaseYear }}
+                    Released: {{ review.console }}
                 </p>
                 <p class="card-text">
-                    Ratings: {{ review.ratings }}
+                    Ratings: {{ review.arthor }}
                 </p>
                 <a href="/consoles/{{ review.id }}" class="btn btn-info">
                     View Reviews{{ review.title }}

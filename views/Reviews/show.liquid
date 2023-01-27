@@ -3,7 +3,7 @@
     {% if review.comments.length > 0 %}
         <div class="container-sm justify-content-center">
             {% for comm in review.comments %}
-                {% render '../review.liquid', comm: comm, userId: userId, review: review %}
+                {% render '../reviews.liquid', comm: comm, userId: userId, review: review %}
             {% endfor %}
         </div>
     {% else %}
