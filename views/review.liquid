@@ -7,8 +7,25 @@
                 <div class="card-body">
                 <p>{{ rev.content }}</p>
                 {% if rev.author == userId %}
-                    <form action="/comments/delete/{{ console.id }}/{{ rev.id }}?_method=DELETE" method="POST">
+                    <form action="/reviews/delete/{{ console.id }}/{{ rev.id }}?_method=DELETE" method="POST">
                         <input class="btn btn-danger" type="submit" value="X">
+                    </form>
+                    <form action="/reviews/edit/{{ console.id }}/{{ rev.id }}?_method=PUT" method="POST">
+                    <label class="form-label">title:
+                     </label>
+                     <input
+                       type="text"
+                       name="title"
+                       class="form-control mb-1"
+                       value="{{ rev.title }}">
+                       <label class="form-label">Content:
+                     </label>
+                     <input
+                       type="text"
+                       name="content"
+                       class="form-control mb-1"
+                       value="{{ rev.content }}">
+                        <input class="btn btn-danger" type="submit" value="Edit">
                     </form>
                 {% endif %}
             </div>

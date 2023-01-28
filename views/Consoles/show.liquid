@@ -69,6 +69,9 @@
             <div class="container-sm justify-content-center">
                 {% for rev in console.reviews %}
                     {% render '../review.liquid', rev: rev, userId: userId, console: console %}
+                    {%-comment-%}
+                    rev in console.reviews (review = rev) (blue is just name(review); white is the actual value(rev))
+                {%-endcomment-%}
                 {% endfor %}
             </div>
         {% else %}
