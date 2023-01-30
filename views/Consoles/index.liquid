@@ -4,7 +4,7 @@
     <h2 class="display-6">All Consoles</h2>
     <div class="row">
         {% for console in consoles %}
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 18rem; margin: 20px 50px 20px 15px;">
             <h5 class="card-header">{{ console.name }}</h5>
             <div class="card-body">
                 <h5 class="card-title">
@@ -19,6 +19,7 @@
                 <a href="/consoles/{{ console.id }}" class="btn btn-info">
                     View {{ console.title }}
                 </a>
+                <button type="button" class="btn btn-sm btn-info-border-subtle" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="{{ console.manufacturer }}">More Info</button>
             </div>
         </div>
         {% endfor %}
