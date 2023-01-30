@@ -66,7 +66,7 @@
         {% endif %}
         <hr>
         {% if console.reviews.length > 0 %}
-            <div class="container-sm justify-content-center">
+            <div class="container-sm justify-content-center text-danger">
                 {% for rev in console.reviews %}
                     {% render '../review.liquid', rev: rev, userId: userId, console: console %}
                     {%-comment-%}
@@ -75,6 +75,6 @@
                 {% endfor %}
             </div>
         {% else %}
-            <small>no reviews yet...</small>
+            <small>No reviews yet, you should make one for {{ console.manufacturer }} to let them know! </small>
         {% endif %}
 {% endblock %}

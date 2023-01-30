@@ -73,6 +73,7 @@ router.post('/:consoleId', (req, res) => {
     }
 })
 
+/// EDIT
 router.put('/edit/:consoleId/:revId', (req, res) => {
     const { consoleId, revId } = req.params
     // only for document/models
