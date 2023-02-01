@@ -13,13 +13,13 @@
           <h5 class="card-header">{{ favorites.title }}</h5>
           <div class="card-body">
             <h5 class="card-title">
-              Title: {{ favorites.title }}
+              Released: {{ favorites.releaseYear }}
             </h5>
             <p class="card-text">
-              Artist: {{ favorites.manufacturer }}
+              Developed By: {{ favorites.manufacturer }}
             </p>
             <p class="card-text">
-              Album: {{ favorites.name }}
+              Name: {{ favorites.name }}
             </p>
               <form action="/favorites/{{ favorites.id }}?_method=DELETE" method="POST">
           
