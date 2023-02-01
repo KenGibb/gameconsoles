@@ -1,21 +1,28 @@
 // import dependencies
 const mongoose = require('./connection')
 
-const consoleSchema = require('./console')
+const User = require('./user')
 
 // destructure the schema and model constructors from mongoose
 const { Schema, model } = mongoose
 
 const favoriteSchema = new Schema ({
 	manufacturer: {
-		type: String,
+		type: Schema.Types.ObjectId,
+        ref: 'Console',
 	},
 	name: {
-		type: String,
+		type: Schema.Types.ObjectId,
+        ref: 'Console',
 	},
 	releaseYear: {
-		type: Number
-	}
+		type: Schema.Types.ObjectId,
+        ref: 'Console',
+	},
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+    }
 	
 }, { timeStamps: true })
 

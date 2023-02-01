@@ -25,7 +25,7 @@ router.get('/', (req,res) => {
         .populate('console')
 		.then(favorites => {
             // console.log(favorites)
-            res.render('favs/index', { favorites, username, loggedIn })
+            res.render('favorites/index', { favorites, username, loggedIn })
             // res.redirect('/favorites')
 		})
 		.catch(error => {
@@ -34,12 +34,14 @@ router.get('/', (req,res) => {
 
 })
 
+
+
 // DELETE -> `/favorites/delete/<someFaveId>`
 // make sure only the author of the favorite can delete the favorite
 router.delete('/:favoriteID', (req, res) => {
     // isolate the ids and save to variables so we don't have to keep typing req.params
     // const consoleID = req.params.consoleID
-    console.log("DELETE ROUTE HIT")
+    console.log("Removed favorite?")
     const favoriteID  = req.params.favoriteID
     // get the console
     Favorite.findById(favoriteID)
