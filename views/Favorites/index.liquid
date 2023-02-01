@@ -3,7 +3,7 @@
 <h1>Hi</h1>
 <div>
     <h2 class="display-6">All Favorites</h2>
-    <div class="row">
+      <div class="row">
       {% if favorites.length == 0 %}
       <h3>No Saved Items</h3>
       {%else%}
@@ -12,26 +12,22 @@
         <div class="card" style="width: 18rem;">
           <h5 class="card-header">{{ favorites.title }}</h5>
           <div class="card-body">
-            <h5 class="card-title">
+              <h5 class="card-title">
               Released: {{ favorites.releaseYear }}
-            </h5>
-            <p class="card-text">
+              </h5>
+              <p class="card-text">
               Developed By: {{ favorites.manufacturer }}
-            </p>
-            <p class="card-text">
+              </p>
+              <p class="card-text">
               Name: {{ favorites.name }}
-            </p>
-              <form action="/favorites/{{ favorites.id }}?_method=DELETE" method="POST">
-          
+              </p>
+              <form action="/favorites/{{ favorites.id }}?_method=DELETE" method="POST">          
               <input
                 type="submit"
                 class="btn btn-danger"
                 value="DELETE {{ favorite.name}}">
-            </form>
-              
-
-
-          </div>
+              </form>
+            </div>
         </div>
       {% endfor %}
       {%endif%}
