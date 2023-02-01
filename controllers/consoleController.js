@@ -81,8 +81,8 @@ router.post('/', (req, res) => {
 
 	req.body.owner = req.session.userId
 	Console.create(req.body)
-		.then(console => {
-			console.log('this was returned from create', console)
+		.then(gameConsole => {
+			console.log('this was returned from create', { gameConsole })
 			res.redirect('/consoles')
 		})
 		.catch(error => {
@@ -95,8 +95,8 @@ router.get('/:id/edit', (req, res) => {
 	// we need to get the id
 	const consoleId = req.params.id
 	Console.findById(consoleId)
-		.then(console => {
-			res.render('consoles/edit', { console })
+		.then(gameConsole => {
+			res.render('consoles/edit', { gameConsole })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -105,12 +105,12 @@ router.get('/:id/edit', (req, res) => {
 
 // update route
 router.put('/:id', (req, res) => {
-	const consoleId = req.params.id
+	const gameConsoleId = req.params.id
 	req.body.ready = req.body.ready === 'on' ? true : false
 
-	Console.findByIdAndUpdate(consoleId, req.body, { new: true })
+	Console.findByIdAndUpdate(gameConsoleId, req.body, { new: true })
 		.then(console => {
-			res.redirect(`/consoles/${console.id}`)
+			res.redirect(`/consoles/${gameConsole.id}`)
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -133,9 +133,9 @@ router.get('/:id', (req, res) => {
 
 // delete route
 router.delete('/:id', (req, res) => {
-	const consoleId = req.params.id
-	Console.findByIdAndRemove(consoleId)
-		.then(console => {
+	const gameConsoleId = req.params.id
+	Console.findByIdAndRemove(gameConsoleId)
+		.then(gameConsole => {
 			res.redirect('/consoles')
 		})
 		.catch(error => {
