@@ -4,61 +4,27 @@ const Console = require('../models/console')
 // Create router
 const router = express.Router()
 
-// Router Middleware
-// Authorization middleware
-// If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
-//router.use((req, res, next) => {
-//	// checking the loggedIn boolean of our session
-//	if (req.session.loggedIn) {
-//		// if they're logged in, go to the next thing(thats the controller)
-//		next()
-//	} else {
-//		// if they're not logged in, send them to the login page
-//		res.redirect('/auth/login')
-//	}
-//})
-
-// Routes
-
-// index ALL
-//router.get('/', (req, res) => {
-//	Console.find({})
-//		.then(consoles => {
-//			const username = req.session.username
-//			const loggedIn = req.session.loggedIn
-//			res.status(201).json({ consoles: consoles })
-//			// res.render('consoles/index', { consoles, username, loggedIn })
-//		})
-//		.catch(error => {
-//			res.redirect(`/error?error=${error}`)
-//		})
-//})
+//////////////////////
+/// Routers //////////
+//////////////////////
 
 router.get('/', (req, res) => {
     const { username, loggedIn, userId } = req.session
-    // find all the fruits
     Console.find({})
-        // there's a built in function that runs before the rest of the promise chain
-        // this function is called populate, and it's able to retrieve info from other documents in other collections
         .populate('owner', 'username')
         .populate('reviews.author', '-password')
-        // send json if successful
         .then(consoles => { 
-            // res.json({ consoles: consoles })
-            // now that we have liquid installed, we're going to use render as a response for our controllers
             res.render('consoles/index', { consoles, username, loggedIn, userId })
         })
         // catch errors if they occur
         .catch(err => {
             console.log(err)
-            // res.status(404).json(err)
             res.redirect(`/error?error=${err}`)
         })
 })
 
 // index that shows only the user's consoles
 router.get('/mine', (req, res) => {
-    // destructure user info from req.session
     const { username, userId, loggedIn } = req.session
 	Console.find({ owner: userId })
 		.then(consoles => {

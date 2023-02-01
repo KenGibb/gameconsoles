@@ -7,33 +7,6 @@ const router = express.Router()
 /////// Routes //////////////
 /////////////////////////////
 
-// INDEX Route -> displays all reviews
-// 
-//router.post('/reviews/:consoleId', (req, res) => {
-//    const consoleId = req.params.consoleId
-//    Review.find({})
-//        .populate('owner', 'username')
-//        .populate('reviews.author', '-password')
-//        .then(reviews => {
-//            res.json({ reviews: reviews})
-//        })
-//        .catch(err => {
-//            console.log(err)
-//            res.redirect(`/error?error=${err}`)
-//        })
-//})
-
-// Get Route for new review
-//router.get('/new', (rew, res) => {
-//    res.render('reviews/new', { ...req.session })
-//})
-
-//// CREATE Route
-//router.post('/', (req, res) => {
-//    req.body.owner = req.session.userId
-//    req.body.
-//})
-
 router.post('/:consoleId', (req, res) => {
     const consoleId = req.params.consoleId
     // then we'll protect this route against non-logged in users
