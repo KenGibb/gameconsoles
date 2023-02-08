@@ -14,36 +14,6 @@ const router = express.Router()
 //////////////////////////////
 //// Routes               ////
 //////////////////////////////
-
-// from server.js
-// (/reviews/...)
-
-// INDEX route 
-// Read -> finds and displays all reviews
-// ('/')
-//router.get('/', (req, res) => {
-//    const { username, loggedIn, userId } = req.session
-//    // find all the reviews
-//    Review.find({})
-//        .populate('owner', 'username')
-//        .populate('reviews.author', '-password')
-//        .then(reviews => { 
-//            // now that we have liquid installed, we're going to use render as a response for our controllers
-//            res.render('reviews/index', { reviews, username, loggedIn, userId })
-//        })
-//        // catch errors if they occur
-//        .catch(err => {
-//            console.log(err)
-//            // res.status(404).json(err)
-//            res.redirect(`/error?error=${err}`)
-//        })
-//})
-//
-//// GET for the new page
-//// should show a form where a user can create a new review
-//router.get('/new', (req, res) => {
-//    res.render('reviews/new', { ...req.session })
-//})
 ////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -73,6 +43,7 @@ router.post('/:consoleId', (req, res) => {
     }
 })
 
+/// EDIT
 router.put('/edit/:consoleId/:revId', (req, res) => {
     const { consoleId, revId } = req.params
     // only for document/models

@@ -3,15 +3,19 @@
 
 <div class="container-sm">
     <form action="/auth/signup" method="POST">
-        <fieldset>
-            <legend>Sign Up Here!</legend>
-            <label class="form-label">Username: </label>
-            <input type="text" name="username" placeholder="username" class="form-control" required>
-            <label class="form-label">Password</label>
-            <input type="password" name="password" placeholder="enter password" class="form-control" required>
+        <fieldset> 
+            <legend>Make a New Account</legend>      
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="username" placeholder="Username">
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="password" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
         </fieldset>
-        <input type="submit" value="Create Account" class="btn btn-success">
-    </form>
+            <input type="submit" value="Create Account" class="btn btn-success">
+        </form>
 </div>
 
 {% endblock %}

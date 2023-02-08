@@ -4,61 +4,27 @@ const Console = require('../models/console')
 // Create router
 const router = express.Router()
 
-// Router Middleware
-// Authorization middleware
-// If you have some resources that should be accessible to everyone regardless of loggedIn status, this middleware can be moved, commented out, or deleted. 
-//router.use((req, res, next) => {
-//	// checking the loggedIn boolean of our session
-//	if (req.session.loggedIn) {
-//		// if they're logged in, go to the next thing(thats the controller)
-//		next()
-//	} else {
-//		// if they're not logged in, send them to the login page
-//		res.redirect('/auth/login')
-//	}
-//})
-
-// Routes
-
-// index ALL
-//router.get('/', (req, res) => {
-//	Console.find({})
-//		.then(consoles => {
-//			const username = req.session.username
-//			const loggedIn = req.session.loggedIn
-//			res.status(201).json({ consoles: consoles })
-//			// res.render('consoles/index', { consoles, username, loggedIn })
-//		})
-//		.catch(error => {
-//			res.redirect(`/error?error=${error}`)
-//		})
-//})
+//////////////////////
+/// Routers //////////
+//////////////////////
 
 router.get('/', (req, res) => {
     const { username, loggedIn, userId } = req.session
-    // find all the fruits
     Console.find({})
-        // there's a built in function that runs before the rest of the promise chain
-        // this function is called populate, and it's able to retrieve info from other documents in other collections
         .populate('owner', 'username')
         .populate('reviews.author', '-password')
-        // send json if successful
         .then(consoles => { 
-            // res.json({ consoles: consoles })
-            // now that we have liquid installed, we're going to use render as a response for our controllers
             res.render('consoles/index', { consoles, username, loggedIn, userId })
         })
         // catch errors if they occur
         .catch(err => {
             console.log(err)
-            // res.status(404).json(err)
             res.redirect(`/error?error=${err}`)
         })
 })
 
 // index that shows only the user's consoles
 router.get('/mine', (req, res) => {
-    // destructure user info from req.session
     const { username, userId, loggedIn } = req.session
 	Console.find({ owner: userId })
 		.then(consoles => {
@@ -72,7 +38,7 @@ router.get('/mine', (req, res) => {
 // new route -> GET route that renders our page with the form
 router.get('/new', (req, res) => {
 	const { username, userId, loggedIn } = req.session
-	res.render('reviews/new', { username, loggedIn })
+	res.render('consoles/new', { username, loggedIn })
 })
 
 // create -> POST route that actually calls the db and makes a new document
@@ -81,8 +47,8 @@ router.post('/', (req, res) => {
 
 	req.body.owner = req.session.userId
 	Console.create(req.body)
-		.then(console => {
-			console.log('this was returned from create', console)
+		.then(gameConsole => {
+			console.log('this was returned from create', { gameConsole })
 			res.redirect('/consoles')
 		})
 		.catch(error => {
@@ -95,8 +61,8 @@ router.get('/:id/edit', (req, res) => {
 	// we need to get the id
 	const consoleId = req.params.id
 	Console.findById(consoleId)
-		.then(console => {
-			res.render('consoles/edit', { console })
+		.then(gameConsole => {
+			res.render('consoles/edit', { gameConsole })
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -105,12 +71,12 @@ router.get('/:id/edit', (req, res) => {
 
 // update route
 router.put('/:id', (req, res) => {
-	const consoleId = req.params.id
+	const gameConsoleId = req.params.id
 	req.body.ready = req.body.ready === 'on' ? true : false
 
-	Console.findByIdAndUpdate(consoleId, req.body, { new: true })
+	Console.findByIdAndUpdate(gameConsoleId, req.body, { new: true })
 		.then(console => {
-			res.redirect(`/consoles/${console.id}`)
+			res.redirect(`/consoles/${gameConsole.id}`)
 		})
 		.catch((error) => {
 			res.redirect(`/error?error=${error}`)
@@ -133,9 +99,9 @@ router.get('/:id', (req, res) => {
 
 // delete route
 router.delete('/:id', (req, res) => {
-	const consoleId = req.params.id
-	Console.findByIdAndRemove(consoleId)
-		.then(console => {
+	const gameConsoleId = req.params.id
+	Console.findByIdAndRemove(gameConsoleId)
+		.then(gameConsole => {
 			res.redirect('/consoles')
 		})
 		.catch(error => {

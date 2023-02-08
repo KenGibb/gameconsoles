@@ -1,31 +1,40 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-sm">
-    <form action="/reviews" method="POST">
+    <form action="/consoles" method="POST">
         <fieldset>
-            <legend>Make a review</legend>
-            <label class="form-label">Title: </label>
+            <legend>Create New Console</legend>
+            <label class="form-floating mb-3">Console Name: </label>
             <input 
+            
                 type="text" 
-                name="title" 
+                name="name" 
                 placeholder="enter title"
                 class="form-control"
             >
-            <label class="form-label">Content:</label>
+            <label class="form-label">Developer:</label>
             <input 
                 type="text" 
-                name="body" 
+                name="manufacturer" 
                 placeholder="enter body" 
                 class="form-control"
             >
-            <label class="form-label">Your Name:</label>
+            <label class="form-label">Year Made:</label>
             <input 
                 type="type" 
-                name="name" 
+                name="releaseYear" 
+                class="form-control"
+                placeholder="year"
+            >
+            <label class="form-label">Average Ratings:</label>
+            <input 
+                type="type" 
+                name="ratings" 
                 class="form-control"
             >
+
         </fieldset>
-        <input type="submit" value="Make New Review" class="btn btn-success">
+        <input type="submit" value="Make New Console" class="btn btn-success">
     </form>
 </div>
 {% endblock %}

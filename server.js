@@ -8,6 +8,7 @@ const ConsoleRouter = require('./controllers/consoleController')
 const UserRouter = require('./controllers/userController')
 const ReviewRouter = require('./controllers/reviewController')
 const ReviewRouter2 = require('./controllers/reviewControllerr')
+const favoriteRouter = require('./controllers/favoriteController')
 const User = require("./models/user")
 // SEE MORE DEPENDENCIES IN ./utils/middleware.js
 // user and resource routes linked in ./utils/middleware.js
@@ -25,7 +26,7 @@ middleware(app)
 
 app.use('/auth', UserRouter)
 app.use('/consoles', ConsoleRouter)
-//app.use('/reviews', ReviewRouter)
+app.use('/favorites', favoriteRouter)
 app.use('/reviews', ReviewRouter2)
 
 app.get('/', (req, res) => {
@@ -34,6 +35,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/review', (req, res) => {
+	const { username, userId, loggedIn } = req.session
+	res.render('index.liquid', req.session)
+})
+
+app.get('/favorite', (req, res) => {
 	const { username, userId, loggedIn } = req.session
 	res.render('index.liquid', req.session)
 })

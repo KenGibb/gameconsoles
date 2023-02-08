@@ -4,8 +4,8 @@
     <h2 class="display-6">All Consoles</h2>
     <div class="row">
         {% for console in consoles %}
-        <div class="card" style="width: 18rem;">
-            <h5 class="card-header">{{ console.name }}</h5>
+        <div class="card" style="width: 18rem; margin: 20px 50px 20px 15px;">
+            <h5 class="card-header bg-primary-subtle border border-primary-subtle rounded-3">{{ console.name }}</h5>
             <div class="card-body">
                 <h5 class="card-title">
                     Developer: {{ console.manufacturer }}
@@ -19,8 +19,8 @@
                 <a href="/consoles/{{ console.id }}" class="btn btn-info">
                     View {{ console.title }}
                 </a>
-                <a href="/reviews/{{ console.id }}" class="btn btn-info">
-                    Comment {{ review.title }}
+                <a href="/favorites/{{ favorite.id }}" class="btn btn-success">
+                    Save {{ console.title }}
                 </a>
             </div>
         </div>
